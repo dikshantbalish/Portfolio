@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ project.name }} — Dikshant Balish
+{% endblock %}
+
+{% block meta_description %}
+{{ project.description }}
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     PROJECT HERO
+========================================================= -->
+
+<section class="project-detail-hero section">
+
+    <div class="container">
+
+        <div class="project-detail-top">
+
+            <a
+                href="/projects"
+                class="back-link"
+            >
+                <span aria-hidden="true">←</span>
+                All Projects
+            </a>
+
+        </div>
+
+
+        <div class="project-detail-header">
+
+            <div class="project-detail-category">
+
+                {% if project.category %}
+                {{ project.category }}
+                {% else %}
+                Software Engineering
+                {% endif %}
+
+            </div>
+
+
+            <h1 class="project-detail-title">
+                {{ project.name }}
+            </h1>
+
+
+            {% if project.description %}
+
+            <p class="project-detail-description">
+                {{ project.description }}
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT DETAILS
+========================================================= -->
+
+<section class="project-detail-section section">
+
+    <div class="container">
+
+        {% if project.long_description or project.overview %}
+
+        <div class="project-detail-block project-overview-block">
+
+            <p class="section-label">
+                Overview
+            </p>
+
+            <div class="project-detail-text">
+                {{ project.long_description or project.overview }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <div class="project-detail-grid">
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div class="project-detail-main">
+
+                {% if project.problem %}
+
+                <div class="project-detail-block">
+
+                    <p class="section-label">
+                        Problem
+                    </p>
+
+                    <div class="project-detail-text">
+                        {{ project.problem }}
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if project.solution %}
+
+                <div class="project-detail-block">
+
+                    <p class="section-label">
+                        Solution
+                    </p>
+
+                    <div class="project-detail-text">
+                        {{ project.solution }}
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if project.features %}
+
+                <div class="project-detail-block">
+
+                    <p class="section-label">
+                        Key Features
+                    </p>
+
+                    <ul class="project-features">
+
+                        {% for feature in project.features %}
+
+                        <li>
+                            <span aria-hidden="true">↗</span>
+                            {{ feature }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 PROJECT SIDEBAR
+            ================================================== -->
+
+            <aside class="project-detail-sidebar">
+
+                <!-- Technologies -->
+
+                {% if project.technologies %}
+
+                <div class="project-sidebar-block">
+
+                    <p class="project-sidebar-label">
+                        Technologies
+                    </p>
+
+                    <div class="project-tech-list">
+
+                        {% for technology in project.technologies %}
+
+                        <span>
+                            {{ technology }}
+                        </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- Project Information -->
+
+                <div class="project-sidebar-block">
+
+                    <p class="project-sidebar-label">
+                        Project Info
+                    </p>
+
+
+                    {% if project.year %}
+
+                    <div class="project-meta-row">
+
+                        <span>
+                            Year
+                        </span>
+
+                        <strong>
+                            {{ project.year }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if project.category %}
+
+                    <div class="project-meta-row">
+
+                        <span>
+                            Type
+                        </span>
+
+                        <strong>
+                            {{ project.category }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Project Links -->
+
+                <div class="project-sidebar-block">
+
+                    <p class="project-sidebar-label">
+                        Links
+                    </p>
+
+
+                    <div class="project-links">
+
+                        <a
+                            href="{{ project.github }}"
+                            class="project-link-github"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                        {% set live_link = project.demo or project.live_url %}
+
+                        <a
+                            href="{{ live_link or '#' }}"
+                            class="project-link-live{% if not live_link %} is-disabled{% endif %}"
+                            {% if live_link %}target="_blank" rel="noopener noreferrer"{% else %}aria-disabled="true" tabindex="-1"{% endif %}
+                        >
+                            Live Link
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+
+                        {% if project.live_url %}
+
+                        <a
+                            href="{{ project.live_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit Project
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT SCREENSHOT / IMAGE
+========================================================= -->
+
+{% if project.image or project.image_url %}
+
+<section class="project-image-section section">
+
+    <div class="container">
+
+        <div class="project-image-wrapper">
+
+            <img
+                src="{{ project.image or project.image_url }}"
+                alt="{{ project.name }} project preview"
+                class="project-image"
+                loading="lazy"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     RELATED PROJECTS
+========================================================= -->
+
+{% if related_projects %}
+
+<section class="related-projects-section section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+
+                <p class="section-label">
+                    Continue Exploring
+                </p>
+
+                <h2 class="section-heading">
+                    More things I've
+                    <span>built.</span>
+                </h2>
+
+            </div>
+
+            <a
+                href="/projects"
+                class="text-link"
+            >
+                All projects
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="featured-projects">
+
+            {% for related in related_projects %}
+
+            <a
+                href="/projects/{{ related.slug }}"
+                class="featured-project"
+            >
+
+                <div class="project-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+
+                <div class="project-info">
+
+                    {% if related.category %}
+
+                    <p class="project-category">
+                        {{ related.category }}
+                    </p>
+
+                    {% endif %}
+
+
+                    <h3 class="project-title">
+                        {{ related.name }}
+                    </h3>
+
+
+                    {% if related.description %}
+
+                    <p class="project-description">
+                        {{ related.description }}
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div
+                    class="project-arrow"
+                    aria-hidden="true"
+                >
+                    ↗
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="cta-section section">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <p class="eyebrow">
+                Have a similar idea?
+            </p>
+
+            <h2>
+                Let's build
+                <span>something together.</span>
+            </h2>
+
+            <a
+                href="/contact"
+                class="button button-primary"
+            >
+                Start a Conversation
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

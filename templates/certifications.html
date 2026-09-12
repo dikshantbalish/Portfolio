@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}
+Certifications — Dikshant Balish
+{% endblock %}
+
+{% block meta_description %}
+Professional certifications earned by Dikshant Balish across ServiceNow,
+Python, web development and software engineering.
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     CERTIFICATIONS HERO
+========================================================= -->
+
+<section class="page-hero section">
+
+    <div class="container">
+
+        <div class="page-hero-grid">
+
+            <div class="page-hero-content">
+
+                <h1 class="page-hero-title">
+                    Certifications
+                    <span>& credentials.</span>
+                </h1>
+
+                <p class="page-hero-description">
+                    A collection of professional certifications and
+                    learning credentials that complement my practical
+                    software engineering and AI development work.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CERTIFICATIONS
+========================================================= -->
+
+<section class="certifications-section section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+                <p class="section-label">
+                    Credentials
+                </p>
+
+                <h2 class="section-heading">
+                    Learning backed by
+                    <span>practical work.</span>
+                </h2>
+            </div>
+
+        </div>
+
+
+        {% if certifications %}
+
+        <div class="certifications-list">
+
+            {% for certification in certifications %}
+
+            <article class="certification-card">
+
+                <div class="certification-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+
+                <div class="certification-content">
+
+                    <div class="certification-main">
+
+                        <p class="certification-issuer">
+                            {{ certification.issuer }}
+                        </p>
+
+                        <h3 class="certification-title">
+                            {{ certification.name }}
+                        </h3>
+
+                        {% if certification.description %}
+                        <p class="certification-description">
+                            {{ certification.description }}
+                        </p>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="certification-meta">
+
+                        {% if certification.date %}
+                        <span>
+                            {{ certification.date }}
+                        </span>
+                        {% endif %}
+
+                        {% if certification.credential_id %}
+                        <span>
+                            ID: {{ certification.credential_id }}
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+
+                    {% if certification.pdf %}
+
+                    <a
+                        href="{{ url_for('static', path=certification.pdf) }}"
+                        class="certification-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View {{ certification.name }}"
+                    >
+                        <span>View Certificate</span>
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    {% else %}
+
+                    <span class="certification-link is-pending">
+                        <span>Certificate PDF pending</span>
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- Empty state -->
+
+        <div class="empty-state">
+
+            <p class="eyebrow">
+                No certifications available
+            </p>
+
+            <h2>
+                Credentials will appear here.
+            </h2>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CLOSING SECTION
+========================================================= -->
+
+<section class="cta-section section">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <p class="eyebrow">
+                Beyond certificates
+            </p>
+
+            <h2>
+                I value what I can
+                <span>build with the knowledge.</span>
+            </h2>
+
+            <p>
+                Certifications are part of the learning process.
+                Projects, experimentation and real-world problem solving
+                are where that knowledge becomes useful.
+            </p>
+
+            <a
+                href="/projects"
+                class="button button-primary"
+            >
+                Explore Projects
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% block title %}
+Projects — Dikshant Balish
+{% endblock %}
+
+{% block meta_description %}
+Explore projects by Dikshant Balish across software engineering,
+AI/ML, backend development, full-stack development and agentic AI.
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     PROJECTS HERO
+========================================================= -->
+
+<section class="projects-hero section">
+
+    <div class="container">
+
+        <div class="projects-hero-content">
+
+            <h1 class="projects-hero-title">
+                Projects that turn
+                <span>ideas into software.</span>
+            </h1>
+
+            <p class="projects-hero-description">
+                A collection of applications, AI systems and software
+                projects I've built while exploring backend engineering,
+                artificial intelligence and full-stack development.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT LIST
+========================================================= -->
+
+<section class="projects-list-section section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+
+                <p class="section-label">
+                    Portfolio
+                </p>
+
+                <h2 class="section-heading">
+                    Selected
+                    <span>projects.</span>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CATEGORY FILTER
+        ====================================================== -->
+
+        {% if categories %}
+
+        <div class="project-filters">
+
+            <a
+                href="/projects"
+                class="project-filter{% if not selected_category %} active{% endif %}"
+            >
+                All
+            </a>
+
+            {% for category in categories %}
+
+            <a
+                href="/projects?category={{ category|urlencode }}"
+                class="project-filter"
+            >
+                {{ category }}
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+
+        {% if projects %}
+
+        <div class="projects-list">
+
+            {% for project in projects %}
+
+            <article class="project-card">
+
+                <!-- Number -->
+
+                <div class="project-card-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+
+                <!-- Main Information -->
+
+                <div class="project-card-content">
+
+                    {% if project.category %}
+
+                    <p class="project-category">
+                        {{ project.category }}
+                    </p>
+
+                    {% endif %}
+
+
+                    <h3 class="project-card-title">
+                        {{ project.name }}
+                    </h3>
+
+
+                    {% if project.description %}
+
+                    <p class="project-card-description">
+                        {{ project.description }}
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- Technologies -->
+
+                    {% if project.technologies %}
+
+                    <div class="project-technologies">
+
+                        {% for technology in project.technologies %}
+
+                        <span>
+                            {{ technology }}
+                        </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Project Link -->
+
+                <div class="project-card-action">
+
+                    <a
+                        href="/projects/{{ project.slug }}"
+                        aria-label="View {{ project.name }}"
+                    >
+                        <span>
+                            View Project
+                        </span>
+
+                        <span
+                            class="project-arrow"
+                            aria-hidden="true"
+                        >
+                            ↗
+                        </span>
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- =====================================================
+             EMPTY STATE
+        ====================================================== -->
+
+        <div class="empty-state">
+
+            <p class="eyebrow">
+                Portfolio
+            </p>
+
+            <h2>
+                No projects found.
+            </h2>
+
+            <p>
+                Projects will appear here once they are added.
+            </p>
+
+            <a
+                href="/"
+                class="button button-primary"
+            >
+                Back Home
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT CATEGORIES / AREAS
+========================================================= -->
+
+<section class="project-focus-section section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+
+                <p class="section-label">
+                    Areas of Work
+                </p>
+
+                <h2 class="section-heading">
+                    Where I like
+                    <span>to build.</span>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="project-focus-grid">
+
+            <div class="project-focus-item">
+
+                <span class="project-focus-number">
+                    01
+                </span>
+
+                <h3>
+                    AI & Agentic Systems
+                </h3>
+
+                <p>
+                    LLM applications, AI agents, tool calling,
+                    retrieval workflows and intelligent automation.
+                </p>
+
+            </div>
+
+
+            <div class="project-focus-item">
+
+                <span class="project-focus-number">
+                    02
+                </span>
+
+                <h3>
+                    Backend Engineering
+                </h3>
+
+                <p>
+                    APIs, server-side applications, databases and
+                    reliable backend systems using Python and FastAPI.
+                </p>
+
+            </div>
+
+
+            <div class="project-focus-item">
+
+                <span class="project-focus-number">
+                    03
+                </span>
+
+                <h3>
+                    Full-Stack Applications
+                </h3>
+
+                <p>
+                    Practical web applications connecting modern
+                    interfaces with robust backend services.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-section section">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <p class="eyebrow">
+                Have an idea?
+            </p>
+
+            <h2>
+                Let's build
+                <span>something useful.</span>
+            </h2>
+
+            <a
+                href="/contact"
+                class="button button-primary"
+            >
+                Start a Conversation
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

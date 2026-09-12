@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="{% block meta_description %}Dikshant Balish — Software Engineer and AI Developer building practical, intelligent and scalable software systems.{% endblock %}"
+    >
+
+    <meta
+        name="author"
+        content="Dikshant Balish"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="theme-color"
+        content="#f4f4f0"
+    >
+
+    <title>
+        {% block title %}
+        Dikshant Balish — Software Engineer & AI Developer
+        {% endblock %}
+    </title>
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         STYLESHEET
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}?v=20260923"
+    >
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+
+<body class="{% if page %}page-{{ page }}{% endif %}">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-container">
+
+            <!-- Desktop Navigation -->
+
+            <nav
+                class="site-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="/"
+                    class="{% if page == 'home' %}active{% endif %}"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="/projects"
+                    class="{% if page == 'projects' or page == 'project' %}active{% endif %}"
+                >
+                    Projects
+                </a>
+
+                <a
+                    href="/resume"
+                    class="{% if page == 'resume' %}active{% endif %}"
+                >
+                    Resume
+                </a>
+
+                <a
+                    href="/certifications"
+                    class="{% if page == 'certifications' %}active{% endif %}"
+                >
+                    Certifications
+                </a>
+
+                <a
+                    href="/contact"
+                    class="{% if page == 'contact' %}active{% endif %}"
+                >
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- Header CTA -->
+
+          
+
+            <!-- Mobile Menu Button -->
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mobile-navigation"
+            >
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+    ====================================================== -->
+
+    <div
+        class="mobile-navigation"
+        id="mobile-navigation"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-navigation-inner">
+
+            <div class="mobile-nav-label">
+                Navigation
+            </div>
+
+
+            <nav
+                class="mobile-nav"
+                aria-label="Mobile navigation"
+            >
+
+                <a
+                    href="/"
+                    class="{% if page == 'home' %}active{% endif %}"
+                >
+                    <span>01</span>
+                    Home
+                </a>
+
+                <a
+                    href="/projects"
+                    class="{% if page == 'projects' or page == 'project' %}active{% endif %}"
+                >
+                    <span>02</span>
+                    Projects
+                </a>
+
+                <a
+                    href="/resume"
+                    class="{% if page == 'resume' %}active{% endif %}"
+                >
+                    <span>03</span>
+                    Resume
+                </a>
+
+                <a
+                    href="/certifications"
+                    class="{% if page == 'certifications' %}active{% endif %}"
+                >
+                    <span>04</span>
+                    Certifications
+                </a>
+
+                <a
+                    href="/contact"
+                    class="{% if page == 'contact' %}active{% endif %}"
+                >
+                    <span>05</span>
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <div class="mobile-navigation-footer">
+
+                <span>
+                    Software Engineer · AI/ML
+                </span>
+
+                <span>
+                    India
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main id="main-content">
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © {{ current_year or 2026 }} Dikshant Balish
+                </span>
+
+                <span>
+                    Software Engineer · AI/ML · Backend
+                </span>
+
+                <a href="#main-content">
+                    Back to top ↑
+                </a>
+
+            </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="{{ url_for('static', path='js/main.js') }}?v=20260917"
+        defer
+    ></script>
+
+    {% block extra_scripts %}{% endblock %}
+
+</body>
+
+</html>

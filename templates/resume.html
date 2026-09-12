@@ -1,0 +1,557 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume — Dikshant Balish
+{% endblock %}
+
+{% block meta_description %}
+Resume of Dikshant Balish, Software Engineer and AI Developer focused on
+Python, FastAPI, backend engineering, AI/ML and agentic AI.
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     RESUME HERO
+========================================================= -->
+
+<section class="resume-hero section">
+
+    <div class="container">
+
+        <div class="resume-hero-grid">
+
+
+            <div class="resume-hero-content">
+
+                <h1 class="resume-hero-title">
+                    Dikshant
+                    <span>Sharma</span>
+                </h1>
+
+                <p class="resume-hero-role">
+                    Software Engineer · AI Developer
+                </p>
+
+                <p class="resume-hero-description">
+                    Computer Science graduate focused on backend engineering, AI/ML, agentic AI and building practical software systems.
+                </p>
+
+
+                <div class="resume-actions">
+
+                    <!-- Change this path if your PDF has a different name -->
+
+                    <a
+                        href="{{ url_for('static', path='documents/DIKSHANT_RESUME.pdf') }}"
+                        class="button button-primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View PDF
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <a
+                        href="{{ url_for('static', path='documents/DIKSHANT_RESUME.pdf') }}"
+                        class="button button-secondary"
+                        download
+                    >
+                        Download PDF
+                        <span aria-hidden="true">↓</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROFESSIONAL SUMMARY
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>01</span>
+                Profile
+            </div>
+
+
+            <div class="resume-section-content">
+
+                <h2 class="section-heading">
+                    Software engineering
+                    <span>with an AI focus.</span>
+                </h2>
+
+                <p>
+                    Computer Science graduate with hands-on experience
+                    building full-stack applications, backend APIs and
+                    AI-powered systems.
+                </p>
+
+                <p>
+                    Interested in Python, FastAPI, LLM applications,
+                    agentic AI, automation, databases and scalable
+                    software architecture.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXPERIENCE
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>02</span>
+                Experience
+            </div>
+
+
+            <div class="resume-timeline">
+
+                {% if experience %}
+
+                {% for item in experience %}
+
+                <article class="resume-entry">
+
+                    <div class="resume-entry-meta">
+
+                        {% if item.duration %}
+                        <span>
+                            {{ item.duration }}
+                        </span>
+                        {% endif %}
+
+                        {% if item.location %}
+                        <span>
+                            {{ item.location }}
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="resume-entry-content">
+
+                        <h3>
+                            {{ item.role or item.title }}
+                        </h3>
+
+                        <p class="resume-entry-company">
+                            {{ item.company }}
+                        </p>
+
+                        {% if item.description %}
+
+                        <p>
+                            {{ item.description }}
+                        </p>
+
+                        {% endif %}
+
+
+                        {% if item.responsibilities %}
+
+                        <ul>
+
+                            {% for responsibility in item.responsibilities %}
+
+                            <li>
+                                {{ responsibility }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+                {% else %}
+
+                <article class="resume-entry">
+
+                    <div class="resume-entry-meta">
+                        <span>May — Jun 2024</span>
+                    </div>
+
+                    <div class="resume-entry-content">
+
+                        <h3>
+                            Web Development Intern
+                        </h3>
+
+                        <p class="resume-entry-company">
+                            Alpha
+                        </p>
+
+                        <p>
+                            Worked on web development tasks and gained
+                            practical experience building and improving
+                            web applications.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>03</span>
+                Selected Projects
+            </div>
+
+
+            <div class="resume-project-list">
+
+                {% if projects %}
+
+                {% for project in projects[:4] %}
+
+                <a
+                    href="/projects/{{ project.slug }}"
+                    class="resume-project"
+                >
+
+                    <span class="resume-project-number">
+                        {{ "%02d"|format(loop.index) }}
+                    </span>
+
+                    <div>
+
+                        {% if project.category %}
+
+                        <p class="project-category">
+                            {{ project.category }}
+                        </p>
+
+                        {% endif %}
+
+                        <h3>
+                            {{ project.name }}
+                        </h3>
+
+                        {% if project.description %}
+
+                        <p>
+                            {{ project.description }}
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                    <span
+                        class="project-arrow"
+                        aria-hidden="true"
+                    >
+                        ↗
+                    </span>
+
+                </a>
+
+                {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SKILLS
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>04</span>
+                Technical Skills
+            </div>
+
+
+            <div class="skills-list">
+
+                {% if skills %}
+
+                {% for skill in skills %}
+
+                <span class="skill-item">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+                {% else %}
+
+                <span class="skill-item">Python</span>
+                <span class="skill-item">FastAPI</span>
+                <span class="skill-item">JavaScript</span>
+                <span class="skill-item">React</span>
+                <span class="skill-item">Node.js</span>
+                <span class="skill-item">Express.js</span>
+                <span class="skill-item">MongoDB</span>
+                <span class="skill-item">SQL</span>
+                <span class="skill-item">AI / ML</span>
+                <span class="skill-item">LLM Applications</span>
+                <span class="skill-item">LangChain</span>
+                <span class="skill-item">LangGraph</span>
+                <span class="skill-item">Git / GitHub</span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EDUCATION
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>05</span>
+                Education
+            </div>
+
+
+            <div class="resume-timeline">
+
+                {% if education %}
+
+                {% for item in education %}
+
+                <article class="resume-entry">
+
+                    <div class="resume-entry-meta">
+
+                        {% if item.duration %}
+                        <span>
+                            {{ item.duration }}
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="resume-entry-content">
+
+                        <h3>
+                            {{ item.degree or item.title }}
+                        </h3>
+
+                        <p class="resume-entry-company">
+                            {{ item.institution }}
+                        </p>
+
+                        {% if item.description %}
+
+                        <p>
+                            {{ item.description }}
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+                {% else %}
+
+                <article class="resume-entry">
+
+                    <div class="resume-entry-meta">
+                        <span>2022 — 2026</span>
+                    </div>
+
+                    <div class="resume-entry-content">
+
+                        <h3>
+                            B.Tech — Computer Science & Engineering
+                        </h3>
+
+                        <p class="resume-entry-company">
+                            Maharishi Markandeshwar (Deemed to be University)
+                        </p>
+
+                        <p>
+                            CGPA: 7.73
+                        </p>
+
+                    </div>
+
+                </article>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CERTIFICATIONS
+========================================================= -->
+
+<section class="resume-section section">
+
+    <div class="container">
+
+        <div class="resume-section-grid">
+
+            <div class="section-label">
+                <span>06</span>
+                Certifications
+            </div>
+
+
+            <div class="resume-certifications">
+
+                {% if certifications %}
+
+                {% for certification in certifications %}
+
+                <div class="resume-certification">
+
+                    <span class="resume-certification-number">
+                        {{ "%02d"|format(loop.index) }}
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            {{ certification.name }}
+                        </h3>
+
+                        <p>
+                            {{ certification.issuer }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT CTA
+========================================================= -->
+
+<section class="cta-section section">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <p class="eyebrow">
+                Interested in working together?
+            </p>
+
+            <h2>
+                Let's build
+                <span>something useful.</span>
+            </h2>
+
+            <a
+                href="/contact"
+                class="button button-primary"
+            >
+                Get In Touch
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

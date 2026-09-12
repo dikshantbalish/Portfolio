@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dikshant Balish — Software Engineer & AI Developer
+{% endblock %}
+
+{% block meta_description %}
+Dikshant Balish is a Software Engineer and AI Developer building intelligent,
+scalable and practical software systems with Python, FastAPI, AI/ML and
+agentic AI.
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container hero-container">
+
+        <div class="hero-intro">
+            <p class="eyebrow">
+                Software Engineer · AI/ML · Backend
+            </p>
+        </div>
+
+
+        <div class="hero-content">
+
+            <h1 class="hero-title">
+                Building software
+                <span>that solves real problems.</span>
+            </h1>
+
+            <p class="hero-description">
+                I'm Dikshant — a Computer Science graduate focused on backend
+                engineering, AI/ML and agentic AI. I enjoy turning ideas into
+                useful, reliable and scalable products.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="/projects"
+                    class="button button-primary"
+                >
+                    View Projects
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                    href="/contact"
+                    class="button button-secondary"
+                >
+                    Let's Talk
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-footer">
+
+            <span>
+                Based in India
+            </span>
+
+            <span class="scroll-indicator">
+                Scroll to explore ↓
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTRODUCTION
+========================================================= -->
+
+<section class="intro-section section">
+
+    <div class="container">
+
+
+        <div class="intro-grid">
+
+            <div>
+
+                <p class="eyebrow">
+                    What I do
+                </p>
+
+            </div>
+
+
+            <div class="intro-text">
+
+                <h2 class="section-heading">
+                    Turning ideas into
+                    <span>useful software.</span>
+                </h2>
+
+                <p>
+                    I design backend systems, APIs and AI-powered products
+                    that turn ambitious ideas into dependable tools.
+                </p>
+
+                <p>
+                    My focus is practical engineering: Python, FastAPI,
+                    LLM applications, agentic workflows and automation
+                    built to work beyond the demo.
+                </p>
+
+
+                <a
+                    href="/projects"
+                    class="text-link"
+                >
+                    Explore my work
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SELECTED PROJECTS
+========================================================= -->
+
+<section class="projects-section section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+
+             
+                <h2 class="section-heading">
+                    Things I've
+                    <span>built.</span>
+                </h2>
+
+            </div>
+
+
+            <a
+                href="/projects"
+                class="text-link"
+            >
+                View all projects
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+
+        {% if featured_projects %}
+
+        <div class="featured-projects">
+
+            {% for project in featured_projects %}
+
+            <a
+                href="/projects/{{ project.slug }}"
+                class="featured-project"
+            >
+
+                <div class="project-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+
+                <div class="project-info">
+
+                    {% if project.category %}
+                    <p class="project-category">
+                        {{ project.category }}
+                    </p>
+                    {% endif %}
+
+
+                    <h3 class="project-title">
+                        {{ project.name }}
+                    </h3>
+
+
+                    {% if project.description %}
+                    <p class="project-description">
+                        {{ project.description }}
+                    </p>
+                    {% endif %}
+
+
+                    {% if project.technologies %}
+
+                    <div class="project-technologies">
+
+                        {% for technology in project.technologies %}
+
+                        <span>
+                            {{ technology }}
+                        </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="project-arrow" aria-hidden="true">
+                    ↗
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <p class="eyebrow">
+                Projects
+            </p>
+
+            <h3>
+                Projects are being updated.
+            </h3>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="cta-section section">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <p class="eyebrow">
+                Have an idea?
+            </p>
+
+            <h2>
+                Let's turn it into
+                <span>something real.</span>
+            </h2>
+
+            <a
+                href="/contact"
+                class="button button-primary"
+            >
+                Start a Conversation
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
