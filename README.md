@@ -1,4 +1,4 @@
-# Dikshant Balish · Portfolio
+# Dikshant Sharma · Portfolio
 
 > Software Engineer building thoughtful backend systems, AI products, and practical digital experiences.
 
